@@ -21,9 +21,8 @@ title = "Luiz & Isabela"
   showBackToTopButton = true # true or false for "back to top" button on posts and pages
 
   socialIcons = [
-    {name = "instagram", url = "https://www.instagram.com/luiz.henrique51987/"},
     {name = "instagram", url = "https://www.instagram.com/ea_zabela/"},
-    {name = "email", url = "mailto:contato@casamento.com"}
+    {name = "instagram", url = "https://www.instagram.com/luiz.henrique51987/"}
   ]
 
 [menu]

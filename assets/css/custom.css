@@ -47,8 +47,23 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 8px !important; /* Square-ish with slight round */
 }
 
-/* Footer Simplicity */
+/* Header Simplicity */
 .footer {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     opacity: 0.6;
+}
+
+/* Social Icon Color Differentiation */
+.gk-social-icons-list .gk-social-icon:nth-child(1) a svg {
+    /* Isabela - Soft Rose Gold */
+    fill: #ceb2a7 !important;
+}
+
+.gk-social-icons-list .gk-social-icon:nth-child(2) a svg {
+    /* Luiz - Clean Silver */
+    fill: #a8a8a8 !important;
+}
+
+.gk-social-icons-list .gk-social-icon a:hover svg {
+    fill: var(--accent-color) !important;
 }
