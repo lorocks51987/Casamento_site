@@ -1,4 +1,4 @@
-baseURL = "https://gokarna-hugo.netlify.app"
+baseURL = "/"
 defaultContentLanguage = "pt-br"
 enableEmoji = true
 enableRobotsTXT = true
@@ -16,6 +16,7 @@ title = "Luiz & Isabela"
   AccentColor = "#FFFFFF"
 
   description = "17 de julho de 2027"
+  copyright = "Luiz & Isabela"
   footer = "Feito com ❤️ para o nosso grande dia"
   metaKeywords = ["casamento", "luiz e isabela", "17 de julho"]
   showBackToTopButton = true # true or false for "back to top" button on posts and pages

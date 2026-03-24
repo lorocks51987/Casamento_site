@@ -3,9 +3,9 @@
 [Popular]
   other = 'Postagens'
 [error404]
-  other = 'Esta página não existe, vá'
+other = "Ops! Esta página não existe."
 [home]
-  other = 'Início'
+other = "Voltar para o Início"
 [nothing]
   other = 'Nada para ver aqui, ainda 😉'
 [previous]
