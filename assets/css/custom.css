@@ -1,0 +1,54 @@
+/* Custom Overrides for Wedding MVP - Monospace & High-End Clean */
+
+:root {
+    --font-family: "Courier New", Courier, monospace;
+}
+
+html, body {
+    font-family: var(--font-family) !important;
+    letter-spacing: -0.02em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+}
+
+/* Deep Dark Mode Overrides */
+[data-theme="dark"], .dark {
+    --dark-primary-color: 18, 18, 18; /* Nearly black */
+    --dark-secondary-color: #1e1e1e;
+    --dark-text-color: #e0e0e0;
+}
+
+/* Clean UI adjustments */
+.header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: none !important;
+}
+
+.post-tags .post-tag {
+    border: 1px solid #444;
+    border-radius: 0; /* Square tags for a cleaner look */
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.post .post-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+/* Avatar Border Radius for a more "Modern" feel */
+.home-about .avatar img {
+    border-radius: 8px !important; /* Square-ish with slight round */
+}
+
+/* Footer Simplicity */
+.footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    opacity: 0.6;
+}

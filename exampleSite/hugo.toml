@@ -13,6 +13,7 @@ title = "Luiz & Isabela"
   avatarAltText = "Luiz & Isabela"
   avatarSize = "size-m"
   avatarURL = "/images/LuIza.png"
+  AccentColor = "#FFFFFF"
 
   description = "17 de julho de 2027"
   footer = "Feito com ❤️ para o nosso grande dia"
