@@ -7,13 +7,16 @@ weight: 2
 
 ![Nosso Casamento](/images/wedding_banner.png)
 
-# Como Tudo Começou
+# O Início de Tudo
 
-Aqui é o espaço perfeito para vocês contarem a trajetória do casal. Desde o primeiro "oi", o primeiro encontro, até o pedido de casamento.
+Nossa jornada começou com um simples encontro, mas logo percebemos que era o início de algo extraordinário. Aqui contaremos como cada detalhe nos trouxe até o "sim" mais importante das nossas vidas.
 
-### Momentos Marcantes
-- **Primeiro Encontro:** [Data/Local]
-- **O Pedido:** [Data/Local]
+### O Primeiro Capítulo
+*   **Onde se conheceram:** [Ex: Faculdade / Trabalho / Através de Amigos]
+*   **O Primeiro Encontro:** [Ex: Um café numa tarde chuvosa]
+*   **A Sintonia:** Desde as primeiras conversas, a conexão foi imediata.
 
-Sinta-se à vontade para adicionar fotos aqui usando a sintaxe Markdown:
-`![Descrição da Foto](/caminho/para/foto.jpg)`
+### O Pedido
+Um momento inesquecível que marcou o início da nossa contagem regressiva para a eternidade.
+
+> "Prometo te amar e te cuidar em cada pequeno detalhe, hoje e sempre."

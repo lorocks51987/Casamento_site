@@ -5,14 +5,14 @@ enableRobotsTXT = true
 languageCode = "pt-br"
 # Choose one of emacs, trac or perldoc
 pygmentsStyle = "monokai"
-theme = "gokarna-hugo"
-themesDir = "c:/dev"
+theme = "."
+themesDir = ".."
 title = "Luiz & Isabela"
 
 [params]
   avatarAltText = "Luiz & Isabela"
   avatarSize = "size-m"
-  avatarURL = "/images/wedding_avatar.png"
+  avatarURL = "/images/LuIza.png"
 
   description = "17 de julho de 2027"
   footer = "Feito com ❤️ para o nosso grande dia"

@@ -5,22 +5,21 @@ type: "page"
 weight: 3
 ---
 
-# Cerimônia e Recepção
+# A Celebração
 
-Estamos ansiosos para celebrar este momento com vocês!
+Estamos preparando cada detalhe com muito amor para receber nossa família e amigos. Confira abaixo os pontos principais do nosso grande dia:
 
-### Horários
-| Evento | Horário |
-| :--- | :--- |
-| **Cerimônia** | 16:00 |
-| **Recepção** | 18:00 |
-| **Festa** | 20:00 |
+### Programação
+| Evento | Horário | Local |
+| :--- | :--- | :--- |
+| **Cerimônia Religiosa** | 16:30 | Capela de São Bento |
+| **Recepção e Coquetel** | 18:30 | Salão de Festas Imperial |
+| **Jantar e Festa** | 20:00 | Salão Principal |
 
-### Localização
-[Inserir nome do local]
-[Endereço completo]
+### Traje (Dress Code)
+**Passeio Completo:** Queremos que todos se sintam elegantes e confortáveis para aproveitar a festa conosco.
 
-> **Dica:** Clique no mapa abaixo para abrir a navegação no seu celular.
+### Como Chegar
+Abaixo você encontra o mapa interativo para facilitar sua navegação via GPS.
 
-<!-- Inserir iframe do Google Maps aqui -->
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197!2d-46.658!3d-23.564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMzJzUwLjQiUyA0NsKwMzknMjguOCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197!2d-46.658!3d-23.564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMzJzUwLjQiUyA0NsKwMzknMjguOCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
