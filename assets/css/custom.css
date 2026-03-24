@@ -1,19 +1,34 @@
-/* Custom Overrides for Wedding MVP - Monospace & High-End Clean */
-
-:root {
-    --font-family: "Courier New", Courier, monospace;
+.home-about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* Fill the screen */
+    text-align: center;
+    padding: 2rem 0;
 }
 
-html, body {
-    font-family: var(--font-family) !important;
-    letter-spacing: -0.02em;
+.home-about h1 {
+    font-size: 4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-family) !important;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 700;
+.home-about h2 {
+    font-size: 1.2rem;
+    opacity: 0.5;
+    letter-spacing: 0.2em;
+}
+
+.home-about .avatar img {
+    border-radius: 4px !important;
+    width: 250px !important;
+    height: auto !important;
+}
+
+/* Home Socials */
+.gk-social-icons {
+    margin-top: -5vh; /* Pull up a bit towards the content */
 }
 
 /* Deep Dark Mode Overrides */
