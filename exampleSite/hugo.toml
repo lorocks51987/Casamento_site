@@ -1,0 +1,70 @@
+baseURL = "https://gokarna-hugo.netlify.app"
+defaultContentLanguage = "pt-br"
+enableEmoji = true
+enableRobotsTXT = true
+languageCode = "pt-br"
+# Choose one of emacs, trac or perldoc
+pygmentsStyle = "monokai"
+theme = "gokarna-hugo"
+themesDir = "c:/dev"
+title = "Luiz & Isabela"
+
+[params]
+  avatarAltText = "Luiz & Isabela"
+  avatarSize = "size-m"
+  avatarURL = "/images/wedding_avatar.png"
+
+  description = "17 de julho de 2027"
+  footer = "Feito com ❤️ para o nosso grande dia"
+  metaKeywords = ["casamento", "luiz e isabela", "17 de julho"]
+  showBackToTopButton = true # true or false for "back to top" button on posts and pages
+
+  socialIcons = [
+    {name = "instagram", url = "https://instagram.com/seu-perfil"},
+    {name = "email", url = "mailto:contato@casamento.com"}
+  ]
+
+[menu]
+  [[menu.main]]
+    name = "Início"
+    pre = "<span data-feather='home'></span>"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Nossa História"
+    pre = "<span data-feather='heart'></span>"
+    url = "/history/"
+    weight = 2
+
+  [[menu.main]]
+    name = "O Casamento"
+    pre = "<span data-feather='calendar'></span>"
+    url = "/ceremony/"
+    weight = 3
+
+  [[menu.main]]
+    name = "RSVP"
+    pre = "<span data-feather='check-circle'></span>"
+    url = "/rsvp/"
+    weight = 4
+
+  [[menu.main]]
+    name = "Presentes"
+    pre = "<span data-feather='gift'></span>"
+    url = "/gifts/"
+    weight = 5
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 4
+    ordered = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[minify]
+    minifyOutput = true
+
+ignoreLogs = ["warning-goldmark-raw-html"]
