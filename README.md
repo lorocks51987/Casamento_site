@@ -1,28 +1,40 @@
-# Gokarna
+# 💍 Casamento: Luiz & Isabela
 
-Gokarna is an opinionated theme with a focus on minimalism and simplicity.
+Bem-vindo ao repositório do site oficial do casamento de **Luiz & Isabela**, que será realizado em **17 de julho de 2027**.
 
-### Authors:
+Este site foi construído utilizando o gerador de sites estáticos [Hugo](https://gohugo.io/) e o tema [Gokarna](https://github.com/gokarna-theme/gokarna), personalizado para refletir a identidade e o amor do casal.
 
-- [Yash Mehrotra](https://yashmehrotra.com)
-- [Avijit Gupta](https://twitter.com/526avijit)
+## 🚀 Como Visualizar Localmente
 
-#### Major Contributors
-- [James Davidson](https://jamesdavidson.xyz)
-- [David Kröll](https://davidkroell.com)
-- [Mansoor Barri](https://mansoorbarri.com)
+Se você deseja rodar este projeto na sua máquina:
 
-### Demo: [https://gokarna-hugo.netlify.app](https://gokarna-hugo.netlify.app)
+1.  Certifique-se de ter o [Hugo (Extended)](https://gohugo.io/installation/) instalado.
+2.  Navegue até a pasta do site:
+    ```sh
+    cd exampleSite
+    ```
+3.  Inicie o servidor de desenvolvimento:
+    ```sh
+    hugo server -D
+    ```
+4.  Acesse `http://localhost:1313`.
 
-## Support the developer
+## 🌐 Deploy no Netlify
 
-<a href="https://github.com/sponsors/gokarna-theme">
+O projeto está configurado para deploy automático via Netlify. As configurações de build estão no arquivo `netlify.toml` na raiz.
+
+### Páginas do Projeto:
+- **Início:** Saudação e data do evento.
+- **Nossa História:** Onde tudo começou.
+- **O Casamento:** Detalhes da cerimônia e recepção (com mapas).
+- **RSVP:** Confirmação de presença.
+- **Presentes:** Listas e informações de Pix.
+
+---
+Feito com ❤️ por Luiz & Isabela.
   <img src="https://img.shields.io/badge/Sponsor-❤-red?style=for-the-badge" width="170" height="37" alt="Sponsor us">
 </a>
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/avijitgupta)
-
-## Features
 
 Gokarna is fast, responsive, and [SEO-friendly](#performance).
 
