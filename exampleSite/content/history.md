@@ -1,20 +1,22 @@
 ---
-title: "Nossa História"
+title: "Nossa Jornada"
 date: 2026-03-24
 type: "page"
 weight: 2
 ---
 
-### O Pedido
-Um momento inesquecível que marcou o início da nossa contagem regressiva para a eternidade.
+![Nossa Jornada](/images/wedding_banner.png)
 
-> "Prometo te amar e te cuidar em cada pequeno detalhe, hoje e sempre."
+Tudo começou aos 12 anos de idade.
+
+No primeiro dia de aula, eu a vi e tive uma certeza absoluta. Voltei para casa naquele mesmo dia e avisei a minha mãe: *"Conheci a menina com quem vou casar"*.
 
 ![Nossa época de escola](/images/escola.jpeg)
 
-### Os Dias 12 de Fevereiro
-Depois de toda a dedicação, a nossa história ganhou seus marcos oficiais. No dia **12 de fevereiro de 2022**, o namoro começou. Foram anos de crescimento juntos, partilhando a vida, os valores, a fé e os sonhos. 
+Foram cinco anos de espera e persistência. Dos meus 12 aos quase 17 anos, fiz de tudo para conquistá-la, movido pela certeza de que nunca amei e nunca amaria ninguém como ela.
 
-Exatamente três anos depois, para selar essa jornada, o pedido de casamento aconteceu no dia **12 de fevereiro de 2025**. O "sim" que transformou o namoro no compromisso de uma vida inteira.
+No dia **12 de fevereiro de 2022**, a persistência virou namoro. Exatos três anos depois, em **12 de fevereiro de 2025**, demos o passo seguinte com o noivado.
 
 ![O Nosso Noivado](/images/casamento.jpeg)
+
+Agora, caminhamos para o dia **17 de julho de 2027**. O dia em que aquele menino de 12 anos vai, finalmente, cumprir a promessa que fez.
