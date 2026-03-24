@@ -32,6 +32,3 @@ O projeto está configurado para deploy automático via Netlify. As configuraç�
 
 ---
 Feito com ❤️ por Luiz & Isabela.
-  <img src="https://img.shields.io/badge/Sponsor-❤-red?style=for-the-badge" width="170" height="37" alt="Sponsor us">
-</a>
-
