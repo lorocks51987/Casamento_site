@@ -7,7 +7,7 @@ weight: 2
 
 {{< timeline >}}
   {{< timeline-item date="Início de tudo" >}}
-    Tudo começou aos **12 anos de idade**. No primeiro dia de aula, eu a vi e tive uma certeza absoluta. Avisei a minha mãe: *"Conheci a menina com quem vou casar"*.
+    Tudo começou aos **12 anos de idade**. No primeiro dia de aula, eu a vi e tive uma certeza absoluta. Avisei a minha mãe: *“Conheci a menina com quem vou casar.”*
   {{< /timeline-item >}}
 
   {{< timeline-item date="A Persistência" >}}
