@@ -1,3 +1,43 @@
-<div class="gallery-grid">
+<div class="gallery-grid" id="wedding-gallery">
   {{ .Inner }}
 </div>
+
+<!-- Lighbox Elements -->
+<div id="wedding-lightbox" class="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var modal = document.getElementById("wedding-lightbox");
+    var modalImg = document.getElementById("lightbox-img");
+    var span = document.getElementsByClassName("lightbox-close")[0];
+    
+    // Pegar todas as imagens da galeria
+    var images = document.querySelectorAll(".gallery-item img");
+    
+    images.forEach(function(img) {
+        img.addEventListener('click', function() {
+            modal.classList.add('show');
+            modalImg.src = this.src;
+            // Previne overflow na página inteira
+            document.body.style.overflow = "hidden";
+        });
+    });
+    
+    // Fechar ao clicar no X
+    span.onclick = function() {
+        modal.classList.remove('show');
+        document.body.style.overflow = "auto";
+    }
+    
+    // Fechar ao clicar fora da imagem
+    modal.onclick = function(e) {
+        if (e.target !== modalImg) {
+            modal.classList.remove('show');
+            document.body.style.overflow = "auto";
+        }
+    }
+});
+</script>

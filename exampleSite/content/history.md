@@ -27,4 +27,4 @@ weight: 2
   {{< /timeline-item >}}
 {{< /timeline >}}
 
-![O Nosso Noivado](/images/casamento.jpeg)
+{{< img src="/images/casamento.jpeg" alt="O Nosso Noivado" width="60%" height="80%" >}}

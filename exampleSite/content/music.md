@@ -16,9 +16,6 @@ A música sempre foi fundamental na nossa jornada. Enquanto aguardamos o grande 
 ### Monte a playlist conosco! 🎵
 A trilha sonora do nosso casamento não estaria completa sem o seu toque especial. Queremos que a pista de dança tenha a vibração de todos os nossos convidados!
 
-{{< alert type="Importante" >}}
-  Tornamos nossa playlist **colaborativa**! Clique no botão abaixo para abrir o Spotify e adicionar diretamente as músicas que você quer ouvir na festa.
-{{< /alert >}}
 
 <a href="https://open.spotify.com/playlist/5qiGBsH83SRayyZbrxCXPK?si=2fddf8d5e3bd4f8b&pt=de4ae5cef79a7e89d6812a9bb11dccdd" target="_blank" class="btn-spotify">
   ➕ Adicionar Músicas no Spotify
