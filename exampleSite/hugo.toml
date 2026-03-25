@@ -57,6 +57,12 @@ title = "Luiz & Isabela"
     url = "/gifts/"
     weight = 5
 
+  [[menu.main]]
+    name = "Fotos"
+    pre = "<span data-feather='image'></span>"
+    url = "/gallery/"
+    weight = 6
+
 [markup]
   [markup.tableOfContents]
     startLevel = 1

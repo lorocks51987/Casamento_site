@@ -5,8 +5,6 @@ type: "page"
 weight: 2
 ---
 
-![Nossa Jornada](/images/wedding_banner.png)
-
 Tudo começou aos 12 anos de idade.
 
 No primeiro dia de aula, eu a vi e tive uma certeza absoluta. Voltei para casa naquele mesmo dia e avisei a minha mãe: *"Conheci a menina com quem vou casar"*.

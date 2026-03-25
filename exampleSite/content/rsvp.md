@@ -10,10 +10,16 @@ weight: 4
 Para nos ajudar na organização, por favor confirme sua presença até o dia **17 de Junho de 2027**.
 
 ### Como Confirmar?
-Você pode confirmar preenchendo o formulário abaixo ou entrando em contato por WhatsApp.
+Para sua comodidade, você pode confirmar preenchendo o formulário oficial abaixo ou enviando uma mensagem rápida via WhatsApp.
 
+{{< button-whatsapp url="https://wa.me/5511999999999" >}}
+
+---
+
+### Formulário de Presença
 <!-- Exemplo de Google Forms -->
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfD.../viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+<div style="border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden; margin-top: 2rem;">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfD.../viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+</div>
 
-> Se preferir, mande uma mensagem para nós!
-> [Link para WhatsApp]
+> **Nota:** Por favor, nos avise sobre qualquer restrição alimentar no campo de observações do formulário.
