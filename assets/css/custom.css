@@ -10,6 +10,32 @@
 html, body {
     font-family: var(--font-family) !important;
     letter-spacing: -0.02em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Page Transitions */
+body {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.fade-out {
+    opacity: 0 !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide-up for main content only */
+main#content {
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -307,6 +333,12 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* Navbar Logo Light/Dark Mode */
-.navbar-logo { height: 45px !important; width: auto !important; filter: none; opacity: 0.9; transition: opacity 0.3s ease; }
+.navbar-logo { 
+    height: 38px !important; 
+    width: auto !important; 
+    filter: none !important; /* Keep the gold color always */
+    opacity: 0.9; 
+    transition: opacity 0.3s ease; 
+}
 .navbar-logo:hover { opacity: 1; }
-[data-theme="dark"] .navbar-logo, .dark .navbar-logo { filter: invert(1); }
+/* Removed inversion for favicon rings */

@@ -27,4 +27,4 @@ weight: 2
   {{< /timeline-item >}}
 {{< /timeline >}}
 
-{{< img src="/images/casamento.jpeg" alt="O Nosso Noivado" width="60%" height="80%" >}}
+{{< video src="/videos/casamento.mp4" width="40%" max-width="700px" caption="O Nosso Grande Momento" >}}

@@ -1,0 +1,14 @@
+<div class="video-container" style="text-align: center; margin: 2rem 0;">
+  <video src="{{ .Get "src" | relURL }}" 
+         {{ if .Get "autoplay" | default true }}autoplay {{ end -}}
+         {{ if .Get "loop" | default true }}loop {{ end -}}
+         {{ if .Get "muted" | default true }}muted {{ end -}}
+         {{ if .Get "controls" }}controls {{ end -}}
+         playsinline 
+         style='width: {{ .Get "width" | default "100%" }}; max-width: {{ .Get "max-width" | default "800px" }}; height: {{ .Get "height" | default "auto" }}; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease;'>
+    Seu navegador não suporta o elemento de vídeo.
+  </video>
+  {{ with .Get "caption" }}
+    <p style="font-size: 0.9rem; color: var(--text-color-light); margin-top: 1rem; font-style: italic;">{{ . }}</p>
+  {{ end }}
+</div>

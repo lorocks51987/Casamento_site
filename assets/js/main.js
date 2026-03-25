@@ -19,9 +19,40 @@ const HEADING_TO_TOC_CLASS = {
     'H4': 'level-4'
 }
 
+// Sound interaction
+const clickSound = new Audio('/audio/click.mp3');
+clickSound.volume = 0.5;
+
+function playClickSound() {
+    clickSound.currentTime = 0;
+    clickSound.play().catch(err => console.log("Erro ao tocar som:", err));
+}
+
 function ready() {
     feather.replace({ 'stroke-width': 1, width: 20, height: 20 });
     setThemeByUserPref();
+
+    // Navbar click sound with navigation delay
+    document.querySelectorAll('.nav-link a, .nav-item a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const url = link.getAttribute('href');
+            const target = link.getAttribute('target');
+
+            // Se for link externo ou abrir em nova aba, toca o som e segue normal
+            if (target === '_blank' || url.startsWith('http') && !url.includes(window.location.hostname)) {
+                playClickSound();
+                return;
+            }
+
+            // Para links internos, cancela o clique, toca o som e navega após delay
+            e.preventDefault();
+            playClickSound();
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 150);
+        });
+    });
 
     if (document.querySelector('main#content > .container') !== null &&
         document.querySelector('main#content > .container').classList.contains('post')) {
@@ -61,6 +92,7 @@ function ready() {
     document.getElementById('hamburger-menu-toggle').addEventListener('click', () => {
         const hamburgerMenu = document.getElementsByClassName('nav-hamburger-list')[0]
         const hamburgerMenuToggleTarget = document.getElementById("hamburger-menu-toggle-target")
+        playClickSound();
         if (hamburgerMenu.classList.contains('visibility-hidden')) {
             hamburgerMenu.classList.remove('visibility-hidden');
             hamburgerMenuToggleTarget.setAttribute("aria-checked", "true");
@@ -130,6 +162,7 @@ function toggleTheme(event) {
     } else if (toggleIcon.classList[1] === THEME_TO_ICON_CLASS.light) {
         setThemeAndStore('dark', [event.currentTarget]);
     }
+    playClickSound();
 }
 
 function setTheme(themeToSet, targets) {

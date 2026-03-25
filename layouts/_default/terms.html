@@ -1,9 +1,9 @@
 {{ define "main" }}
 <div class="container tags-list">
 
-    <h1 class="list-title">{{ i18n "tags" }}</h1>
+    <h1 class="list-title">Marcadores</h1>
     {{if eq (len $.Site.Taxonomies.tags) 0}}
-        {{ i18n "nothing" }}
+        Nada para ver aqui, ainda 😉
     {{else}}
     <ul class="post-tags">
         {{ range $.Site.Taxonomies.tags.ByCount }}
