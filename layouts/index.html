@@ -10,37 +10,59 @@
     {{ if isset .Site.Params "description" }}
         <h2>{{ .Site.Params.Description }}</h2>
     {{ end }}
+    <div class="save-the-date">Save the Date</div>
 
-    <!-- Countdown Section -->
-    <div id="countdown" style="margin-top: 2rem; font-size: 1.5rem; letter-spacing: 0.1em; opacity: 0.8;">
-        <span id="days">00</span>D : <span id="hours">00</span>H : <span id="minutes">00</span>M : <span id="seconds">00</span>S
+    <!-- Premium Wedding Countdown -->
+    <div class="wedding-countdown-container">
+        <div id="countdown">
+            <div class="countdown-item">
+                <span id="days">00</span>
+                <span>Dias</span>
+            </div>
+            <div class="countdown-item">
+                <span id="hours">00</span>
+                <span>Horas</span>
+            </div>
+            <div class="countdown-item">
+                <span id="minutes">00</span>
+                <span>Minutos</span>
+            </div>
+            <div class="countdown-item">
+                <span id="seconds">00</span>
+                <span>Segundos</span>
+            </div>
+        </div>
     </div>
 
     <script>
-        const targetDate = new Date("July 17, 2027 00:00:00").getTime();
-        
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+        (function() {
+            const targetDate = new Date("July 17, 2027 00:00:00").getTime();
+            const countdownEl = document.getElementById("countdown");
             
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById("days").innerText = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-            
-            if (distance < 0) {
-                clearInterval(interval);
-                document.getElementById("countdown").innerText = "O GRANDE DIA CHEGOU!";
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                if (distance < 0) {
+                    clearInterval(interval);
+                    countdownEl.innerHTML = "<h3 style='letter-spacing: 0.5em;'>O GRANDE DIA CHEGOU!</h3>";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
             }
-        }
-        
-        const interval = setInterval(updateCountdown, 1000);
-        updateCountdown();
+            
+            const interval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        })();
     </script>
 
 </section>
