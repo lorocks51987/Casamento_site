@@ -54,9 +54,20 @@ body {
 }
 
 @keyframes pulse {
-    0% { transform: scale(0.9); opacity: 0.7; }
-    50% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(0.9); opacity: 0.7; }
+    0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
 }
 
 body.loaded #splash-screen {
@@ -279,10 +290,15 @@ body:not(.dark) {
 }
 
 .btn-rsvp:hover {
-    background-color: currentColor;
-    color: var(--wedding-bg) !important;
+    background-color: var(--wedding-border);
+    color: currentColor;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Elegance shadow */
+}
+
+.btn-rsvp:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* Gallery Masonry & Lightbox */
@@ -450,25 +466,31 @@ body:not(.dark) {
 /* Spotify Collaborative Button */
 .btn-spotify {
     display: inline-block;
-    padding: 14px 28px;
-    background-color: #1DB954;
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 700;
+    padding: 0.5rem 1.2rem;
+    background-color: transparent;
+    color: currentColor;
+    border: 1px solid currentColor;
+    text-decoration: none !important;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    font-weight: 200;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     margin-top: 1.5rem;
-    box-shadow: 0 4px 15px rgba(29, 185, 84, 0.2);
 }
 
 .btn-spotify:hover {
-    background-color: #1ed760;
+    background-color: transparent;
+    color: #1DB954 !important; /* Verde clean do Spotify */
+    border-color: #1DB954;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.3);
-    color: white;
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.1); /* Sombra mais suave */
+}
+
+.btn-spotify:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 6px rgba(29, 185, 84, 0.08);
 }
 
 /* Disable NavBar Hover Effect on Links */
