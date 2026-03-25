@@ -65,8 +65,8 @@ function ready() {
     setThemeByUserPref();
     initScrollReveal();
 
-    // Navbar click sound with navigation delay
-    document.querySelectorAll('.nav-link a, .nav-item a').forEach(link => {
+    // Interactive elements click sound with navigation delay
+    document.querySelectorAll('.nav-link a, .nav-item a, .btn-rsvp').forEach(link => {
         link.addEventListener('click', (e) => {
             const url = link.getAttribute('href');
             const target = link.getAttribute('target');
