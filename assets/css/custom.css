@@ -116,6 +116,7 @@ h6 {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 700;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 /* Deep Dark Mode Overrides */
