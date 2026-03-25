@@ -8,6 +8,13 @@
 
     {{- partial "head.html" . -}}
     <body>
+        <!-- Premium Splash Screen (Home Only) -->
+        {{ if .IsHome }}
+        <div id="splash-screen">
+            <img src="{{ relURL "favicon.svg" }}" alt="Loading" class="splash-logo">
+        </div>
+        {{ end }}
+
         <script>
             // Immediately set theme on page load
             setThemeByUserPref();

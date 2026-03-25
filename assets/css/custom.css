@@ -7,7 +7,8 @@
     --timeline-dot-border: #ffffff;
 }
 
-html, body {
+html,
+body {
     font-family: var(--font-family) !important;
     letter-spacing: -0.02em;
     opacity: 1;
@@ -16,7 +17,51 @@ html, body {
 
 /* Page Transitions */
 body {
-    animation: fadeIn 0.4s ease-out forwards;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Splash Screen */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--wedding-bg);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.2s ease-out, visibility 1.2s ease-out;
+}
+
+.splash-logo {
+    width: 80px;
+    height: 80px;
+    animation: pulse 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+body.loaded #splash-screen {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .fade-out {
@@ -24,8 +69,13 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Slide-up for main content only */
@@ -34,11 +84,23 @@ main#content {
 }
 
 @keyframes slideUp {
-    from { transform: translateY(15px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-family) !important;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -46,8 +108,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Deep Dark Mode Overrides */
-[data-theme="dark"], .dark {
-    --dark-primary-color: 18, 18, 18; /* Nearly black */
+[data-theme="dark"],
+.dark {
+    --dark-primary-color: 18, 18, 18;
+    /* Nearly black */
     --dark-secondary-color: #1e1e1e;
     --dark-text-color: #e0e0e0;
     --wedding-border: rgba(255, 255, 255, 0.1);
@@ -56,7 +120,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Light Mode Overrides */
-[data-theme="light"], body:not(.dark) {
+[data-theme="light"],
+body:not(.dark) {
     --accent-color: #1a1a1a !important;
 }
 
@@ -68,7 +133,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .post-tags .post-tag {
     border: 1px solid #444;
-    border-radius: 0; /* Square tags for a cleaner look */
+    border-radius: 0;
+    /* Square tags for a cleaner look */
     text-transform: uppercase;
     font-size: 11px;
 }
@@ -81,7 +147,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Avatar Border Radius for a more "Modern" feel */
 .home-about .avatar img {
-    border-radius: 8px !important; /* Square-ish with slight round */
+    border-radius: 8px !important;
+    /* Square-ish with slight round */
 }
 
 /* Header Simplicity */
@@ -107,27 +174,64 @@ h1, h2, h3, h4, h5, h6 {
 
 /* --- Wedding Specific Components --- */
 
+/* Home Adjustments */
+.home-title {
+    font-size: 2.8rem !important;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+}
+
+.home-date-subtitle {
+    font-weight: 400;
+    opacity: 0.9;
+    font-size: 1.2rem !important;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.3rem;
+    /* Tighter spacing to save-the-date */
+}
+
+/* Wedding Verse Typography */
+.wedding-verse {
+    margin: 0 auto 2.5rem;
+    max-width: 600px;
+    padding: 0 1rem;
+    opacity: 0.7;
+}
+
+.wedding-verse p {
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.wedding-verse span {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+}
+
 /* Save the Date Typography */
 .save-the-date {
     text-transform: uppercase;
     letter-spacing: 0.4em;
-    font-size: 0.9rem;
-    opacity: 0.7;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    font-weight: 300;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-bottom: 3.5rem;
+    /* Larger gap before countdown */
+    font-weight: 400;
 }
 
 /* Premium Countdown */
 .wedding-countdown-container {
-    margin-top: 3rem;
-    padding: 2.5rem 0;
-    border-top: 1px solid var(--wedding-border);
-    border-bottom: 1px solid var(--wedding-border);
+    padding: 0;
     width: 100%;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
 }
 
 #countdown {
@@ -139,16 +243,46 @@ h1, h2, h3, h4, h5, h6 {
 
 .countdown-item span:first-child {
     display: block;
-    font-size: 2.8rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 300;
     line-height: 1;
     margin-bottom: 0.5rem;
 }
 
 .countdown-item span:last-child {
-    font-size: 0.75rem;
-    opacity: 0.5;
+    font-size: 0.7rem;
+    opacity: 0.4;
     font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* RSVP Button */
+.rsvp-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.btn-rsvp {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: transparent;
+    color: currentColor;
+    border: 1px solid currentColor;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    font-weight: 300;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.btn-rsvp:hover {
+    background-color: currentColor;
+    color: var(--wedding-bg) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* Gallery Masonry & Lightbox */
@@ -211,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 90%;
     max-height: 85vh;
     border-radius: 4px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     transform: scale(0.95);
     transition: transform 0.3s ease;
 }
@@ -241,13 +375,24 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
-    .gallery-grid { column-count: 2; }
+    .gallery-grid {
+        column-count: 2;
+    }
 }
 
 @media (max-width: 600px) {
-    .gallery-grid { column-count: 2; gap: 0.8rem; }
-    .countdown-item span:first-child { font-size: 1.8rem; }
-    #countdown { letter-spacing: 0.1em; }
+    .gallery-grid {
+        column-count: 2;
+        gap: 0.8rem;
+    }
+
+    .countdown-item span:first-child {
+        font-size: 1.8rem;
+    }
+
+    #countdown {
+        letter-spacing: 0.1em;
+    }
 }
 
 /* --- Phase 2: Timeline --- */
@@ -327,18 +472,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Disable NavBar Hover Effect on Links */
-.nav-link a:hover, .nav-item a:hover {
+.nav-link a:hover,
+.nav-item a:hover {
     color: inherit !important;
 }
 
 
 /* Navbar Logo Light/Dark Mode */
-.navbar-logo { 
-    height: 38px !important; 
-    width: auto !important; 
-    filter: none !important; /* Keep the gold color always */
-    opacity: 0.9; 
-    transition: opacity 0.3s ease; 
+.navbar-logo {
+    height: 38px !important;
+    width: auto !important;
+    filter: none !important;
+    /* Keep the gold color always */
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
 }
-.navbar-logo:hover { opacity: 1; }
+
+.navbar-logo:hover {
+    opacity: 1;
+}
+
 /* Removed inversion for favicon rings */

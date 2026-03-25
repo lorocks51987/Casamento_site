@@ -28,9 +28,42 @@ function playClickSound() {
     clickSound.play().catch(err => console.log("Erro ao tocar som:", err));
 }
 
+// Scroll Reveal Animations
+function initScrollReveal() {
+    const revealElements = document.querySelectorAll(
+        'main#content h2, main#content h3, main#content p, ' +
+        '.gallery-item, .timeline-item, .home-content blockquote'
+    );
+
+    revealElements.forEach(el => el.classList.add('reveal'));
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Anima apenas na primeira vez
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    revealElements.forEach(el => observer.observe(el));
+}
+
+// Splash Screen Removal
+window.addEventListener('load', () => {
+    if (document.getElementById('splash-screen')) {
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+        }, 1200); // Slower 1.2s delay for a deliberate reveal
+    } else {
+        document.body.classList.add('loaded');
+    }
+});
+
 function ready() {
     feather.replace({ 'stroke-width': 1, width: 20, height: 20 });
     setThemeByUserPref();
+    initScrollReveal();
 
     // Navbar click sound with navigation delay
     document.querySelectorAll('.nav-link a, .nav-item a').forEach(link => {
@@ -121,11 +154,11 @@ function fixTocItemsIndent() {
 
 function createScrollSpy() {
     var elements = document.querySelectorAll('#toc a');
-    document.addEventListener('scroll', function() {
-        elements.forEach(function(element) {
+    document.addEventListener('scroll', function () {
+        elements.forEach(function (element) {
             const boundingRect = document.getElementById(element.getAttribute('href').substring(1)).getBoundingClientRect();
             if (boundingRect.top <= 55 && boundingRect.bottom >= 0) {
-                elements.forEach(function(elem) {
+                elements.forEach(function (elem) {
                     elem.classList.remove('active');
                 });
                 element.classList.add('active');
@@ -136,11 +169,11 @@ function createScrollSpy() {
 
 function toggleHeaderShadow(scrollY) {
     if (window.scrollY > scrollY) {
-        document.querySelectorAll('.header').forEach(function(item) {
+        document.querySelectorAll('.header').forEach(function (item) {
             item.classList.add('header-shadow')
         })
     } else {
-        document.querySelectorAll('.header').forEach(function(item) {
+        document.querySelectorAll('.header').forEach(function (item) {
             item.classList.remove('header-shadow')
         })
     }
