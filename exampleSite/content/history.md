@@ -5,16 +5,26 @@ type: "page"
 weight: 2
 ---
 
-Tudo começou aos 12 anos de idade.
+{{< timeline >}}
+  {{< timeline-item date="Início de tudo" >}}
+    Tudo começou aos **12 anos de idade**. No primeiro dia de aula, eu a vi e tive uma certeza absoluta. Avisei a minha mãe: *"Conheci a menina com quem vou casar"*.
+  {{< /timeline-item >}}
 
-No primeiro dia de aula, eu a vi e tive uma certeza absoluta. Voltei para casa naquele mesmo dia e avisei a minha mãe: *"Conheci a menina com quem vou casar"*.
+  {{< timeline-item date="A Persistência" >}}
+    Foram cinco anos de espera. Dos meus 12 aos quase 17 anos, movido pela certeza de que ela era a pessoa certa.
+  {{< /timeline-item >}}
 
-![Nossa época de escola](/images/escola.jpeg)
+  {{< timeline-item date="21 de Fevereiro de 2022" >}}
+    A persistência virou namoro. O início oficial da nossa história a dois.
+  {{< /timeline-item >}}
 
-Foram cinco anos de espera e persistência. Dos meus 12 aos quase 17 anos, fiz de tudo para conquistá-la, movido pela certeza de que nunca amei e nunca amaria ninguém como ela.
+  {{< timeline-item date="21 de Fevereiro de 2025" >}}
+    Exatos três anos depois, demos o passo seguinte: **O Noivado**.
+  {{< /timeline-item >}}
 
-No dia **12 de fevereiro de 2022**, a persistência virou namoro. Exatos três anos depois, em **12 de fevereiro de 2025**, demos o passo seguinte com o noivado.
+  {{< timeline-item date="17 de Julho de 2027" >}}
+    O dia em que aquele menino de 12 anos vai, finalmente, cumprir a promessa que fez. **O nosso casamento.**
+  {{< /timeline-item >}}
+{{< /timeline >}}
 
 ![O Nosso Noivado](/images/casamento.jpeg)
-
-Agora, caminhamos para o dia **17 de julho de 2027**. O dia em que aquele menino de 12 anos vai, finalmente, cumprir a promessa que fez.

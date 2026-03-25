@@ -10,7 +10,9 @@
         {{ end }}
 
         <div class="nav-title">
-            <a class="nav-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            {{ if not (isset .Site.Params "avatarurl") }}
+                <a class="nav-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            {{ end }}
         </div>
 
         <div class="nav-links">
