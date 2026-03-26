@@ -20,7 +20,7 @@ title = "Luiz & Isabela"
   copyright = "Luiz & Isabela"
   footer = "Feito com ❤️ para o nosso grande dia"
   metaKeywords = ["casamento", "luiz e isabela", "17 de julho"]
-  showBackToTopButton = true # true or false for "back to top" button on posts and pages
+  showBackToTopButton = false # true or false for "back to top" button on posts and pages
 
   socialIcons = [
     {name = "instagram", url = "https://www.instagram.com/ea_zabela/"},
