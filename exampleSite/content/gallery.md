@@ -35,4 +35,13 @@ Capturem cada momento. Aqui estão algumas das nossas lembranças favoritas.
   {{< gallery-image src="/images/29.jpeg" alt="Foto 29" >}}
   {{< gallery-image src="/images/30.jpeg" alt="Foto 30" >}}
   {{< gallery-image src="/images/31.jpeg" alt="Foto 31" >}}
+  {{< gallery-image src="/images/32.jpeg" alt="Foto 32" >}}
+  {{< gallery-image src="/images/33.jpeg" alt="Foto 33" >}}
+  {{< gallery-image src="/images/34.jpeg" alt="Foto 34" >}}
+  {{< gallery-image src="/images/35.jpeg" alt="Foto 35" >}}
+  {{< gallery-image src="/images/36.jpeg" alt="Foto 36" >}}
+  {{< gallery-image src="/images/37.jpeg" alt="Foto 37" >}}
+  {{< gallery-image src="/images/38.jpeg" alt="Foto 38" >}}
+  {{< gallery-image src="/images/casamento.jpeg" alt="Casamento" >}}
+  {{< gallery-image src="/images/escola.jpeg" alt="Escola" >}}
 {{< /gallery >}}

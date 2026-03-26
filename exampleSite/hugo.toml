@@ -47,9 +47,9 @@ title = "Luiz & Isabela"
     weight = 3
 
   [[menu.main]]
-    name = "RSVP"
-    pre = "<span data-feather='check-circle'></span>"
-    url = "/rsvp/"
+    name = "Interaja"
+    pre = "<span data-feather='message-circle'></span>"
+    url = "/mural/"
     weight = 4
 
   [[menu.main]]
@@ -57,30 +57,6 @@ title = "Luiz & Isabela"
     pre = "<span data-feather='gift'></span>"
     url = "/gifts/"
     weight = 5
-
-  [[menu.main]]
-    name = "Fotos"
-    pre = "<span data-feather='image'></span>"
-    url = "/gallery/"
-    weight = 6
-
-  [[menu.main]]
-    name = "Música"
-    pre = "<span data-feather='music'></span>"
-    url = "/music/"
-    weight = 7
-
-  [[menu.main]]
-    name = "Carta dos Noivos"
-    pre = "<span data-feather='mail'></span>"
-    url = "/carta/"
-    weight = 8
-
-  [[menu.main]]
-    name = "Recados"
-    pre = "<span data-feather='message-circle'></span>"
-    url = "/mural/"
-    weight = 9
 
 [markup]
   [markup.tableOfContents]

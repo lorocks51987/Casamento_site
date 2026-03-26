@@ -31,9 +31,10 @@ function playClickSound() {
 // Scroll Reveal Animations
 function initScrollReveal() {
     const revealElements = document.querySelectorAll(
-        'main#content h1, main#content h2, main#content h3, main#content p, ' +
-        'main#content ul, main#content ol, .gallery-item, .timeline-item, ' +
-        '.home-title, .wedding-verse, .home-date-subtitle, .save-the-date, .wedding-countdown-container, .rsvp-container'
+        'main#content h1, main#content h2, main#content h3, main#content p, main#content hr, ' +
+        'main#content ul li, main#content ol li, .gallery-item, .timeline-item, ' +
+        '.home-title, .wedding-verse, .home-date-subtitle, .save-the-date, .wedding-countdown-container, .rsvp-container, ' +
+        '.mural-item, .history-item, .carta-noivos, .carta-section, .btn-spotify, .form-group'
     );
 
     revealElements.forEach(el => {
@@ -43,11 +44,17 @@ function initScrollReveal() {
     });
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
+        // Sort entries by their vertical position to ensure top-to-bottom staggering
+        const sortedEntries = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+
+        sortedEntries.forEach((entry, index) => {
+            // Apply a slight delay to each element that enters at the same time
+            setTimeout(() => {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            }
+            }, index * 100); 
+            observer.unobserve(entry.target);
         });
     }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 

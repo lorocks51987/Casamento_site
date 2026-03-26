@@ -57,19 +57,29 @@ body {
 /* Scroll Reveal Animations */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    transform: translateY(30px) scale(0.98);
+    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
 }
 
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 /* Reveal Staggering */
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-1 {
+    transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+    transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+    transition-delay: 0.3s;
+}
 
 /* Parallax Base */
 .parallax {
@@ -180,6 +190,74 @@ h6 {
 [data-theme="light"],
 body:not(.dark) {
     --accent-color: #1a1a1a !important;
+}
+
+/* Select & Option — remove old select rules, replaced by radio groups */
+
+/* Radio Group — styled pill choices */
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+}
+
+.radio-option {
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-option span {
+    display: inline-block;
+    padding: 0.55rem 1.1rem;
+    border: 2px solid rgba(128, 128, 128, 0.5);
+    border-radius: 3px;
+    font-family: var(--font-family);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    user-select: none;
+    color: inherit;
+}
+
+[data-theme="dark"] .radio-option span,
+.dark .radio-option span {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.radio-option input[type="radio"]:checked+span {
+    border-color: var(--accent-color);
+    background: var(--accent-color);
+    color: var(--wedding-bg);
+}
+
+.radio-option:hover span {
+    border-color: var(--accent-color);
+    opacity: 0.8;
+}
+
+/* Override low-contrast gray text from main.css */
+.post .post-date,
+.prev-post-date,
+.next-post-date,
+.list-posts .post-date,
+blockquote {
+    color: inherit !important;
+    opacity: 0.55;
+}
+
+blockquote {
+    border-left-color: var(--wedding-border) !important;
+    opacity: 1;
+}
+
+blockquote p {
+    opacity: 0.65;
 }
 
 /* Clean UI adjustments */
@@ -560,7 +638,7 @@ body:not(.dark) {
     .wedding-timeline {
         padding-left: 1.5rem;
     }
-    
+
     .timeline-dot {
         left: calc(-1.5rem - 6px);
     }
@@ -652,11 +730,25 @@ body:not(.dark) {
     animation: homeElementIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
 }
 
-.home-about .wedding-verse        { animation-delay: 0.25s; }
-.home-about .home-date-subtitle   { animation-delay: 0.4s; }
-.home-about .save-the-date        { animation-delay: 0.52s; }
-.home-about .wedding-countdown-container { animation-delay: 0.65s; }
-.home-about .rsvp-container       { animation-delay: 0.85s; }
+.home-about .wedding-verse {
+    animation-delay: 0.25s;
+}
+
+.home-about .home-date-subtitle {
+    animation-delay: 0.4s;
+}
+
+.home-about .save-the-date {
+    animation-delay: 0.52s;
+}
+
+.home-about .wedding-countdown-container {
+    animation-delay: 0.65s;
+}
+
+.home-about .rsvp-container {
+    animation-delay: 0.85s;
+}
 
 @keyframes homeElementIn {
     to {
@@ -755,8 +847,15 @@ body:not(.dark) {
 }
 
 @keyframes floatEmoji {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-10px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .text-404 .error-404-title {
@@ -802,41 +901,60 @@ body:not(.dark) {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    opacity: 0.5;
+    opacity: 0.9;
     margin-bottom: 0.5rem;
 }
 
 .mural-form input,
-.mural-form textarea {
+.mural-form textarea,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
     width: 100%;
     background: transparent;
-    border: 1px solid var(--wedding-border);
+    border: 2px solid #ffffff !important;
     border-radius: 2px;
     padding: 0.75rem 1rem;
     font-family: var(--font-family);
     font-size: 0.95rem;
-    color: inherit;
-    transition: border-color 0.3s ease;
+    color: #ffffff !important;
+    transition: all 0.3s ease;
     box-sizing: border-box;
-    resize: vertical;
+    resize: none !important;
+    outline: none;
+}
+
+/* Force placeholder color */
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    opacity: 1;
 }
 
 .mural-form input:focus,
-.mural-form textarea:focus {
-    outline: none;
-    border-color: var(--accent-color);
+.mural-form textarea:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent-color) !important;
 }
 
-.mural-form textarea {
+.mural-form textarea,
+textarea {
     min-height: 130px;
 }
 
-.mural-submit {
+.mural-submit,
+.btn-spotify,
+.btn-rsvp {
     display: inline-block;
     padding: 0.9rem 2.5rem;
     background-color: transparent;
     color: currentColor;
-    border: 1px solid currentColor;
+    border: 2px solid currentColor;
     text-decoration: none !important;
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -851,23 +969,33 @@ body:not(.dark) {
     font-family: var(--font-family);
 }
 
-.mural-submit::before {
+.mural-submit::before,
+.btn-spotify::before,
+.btn-rsvp::before {
     content: '';
     position: absolute;
-    top: 0; left: 0;
-    width: 0; height: 100%;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
     background: var(--accent-color);
     z-index: -1;
     transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.mural-submit:hover {
+.mural-submit:hover,
+.btn-spotify:hover,
+.btn-rsvp:hover {
     color: var(--wedding-bg) !important;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-.mural-submit:hover::before { width: 100%; }
+.mural-submit:hover::before,
+.btn-spotify:hover::before,
+.btn-rsvp:hover::before {
+    width: 100%;
+}
 
 .mural-success {
     display: none;
@@ -879,7 +1007,11 @@ body:not(.dark) {
     animation: homeElementIn 0.5s ease both;
 }
 
-.mural-success .success-emoji { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
+.mural-success .success-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
 
 /* ============================================
    CARTA DOS NOIVOS
@@ -958,8 +1090,13 @@ body:not(.dark) {
 }
 
 @keyframes weddingDayIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .wedding-day-overlay .wd-emoji {
@@ -981,21 +1118,21 @@ body:not(.dark) {
     font-size: 1rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255, 255, 255, 0.4);
     margin-bottom: 2.5rem;
 }
 
 .wedding-day-overlay .wd-divider {
     width: 60px;
     height: 1px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     margin: 0 auto 2rem;
 }
 
 .wedding-day-overlay .wd-dismiss {
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.6);
     font-family: var(--font-family);
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -1008,7 +1145,7 @@ body:not(.dark) {
 }
 
 .wedding-day-overlay .wd-dismiss:hover {
-    border-color: rgba(255,255,255,0.7);
+    border-color: rgba(255, 255, 255, 0.7);
     color: #fff;
 }
 
@@ -1023,6 +1160,13 @@ body:not(.dark) {
 }
 
 @keyframes confettiFall {
-    0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
 }

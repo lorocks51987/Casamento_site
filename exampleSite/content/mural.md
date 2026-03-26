@@ -9,6 +9,8 @@ Deixe uma mensagem especial para nós. Seu recado vai fazer parte desse grande d
 
 ---
 
+### Deixe seu Recado
+
 <form
   name="mural-recados"
   method="POST"
@@ -52,6 +54,19 @@ Deixe uma mensagem especial para nós. Seu recado vai fazer parte desse grande d
     Seu recado foi enviado com muito carinho!<br>
     <em style="opacity:0.6; font-size:0.9rem;">Obrigado por fazer parte da nossa história.</em>
   </p>
+</div>
+
+---
+
+### 🎵 A Trilha Sonora do Nosso Dia
+A música sempre foi fundamental na nossa jornada. Enquanto aguardamos o grande dia, curta nossa playlist e nos ajude a montar a trilha sonora perfeita para a festa!
+
+{{< spotify id="5qiGBsH83SRayyZbrxCXPK" >}}
+
+<div style="margin-top: 1.5rem;">
+<a href="https://open.spotify.com/playlist/5qiGBsH83SRayyZbrxCXPK?si=2fddf8d5e3bd4f8b&pt=de4ae5cef79a7e89d6812a9bb11dccdd" target="_blank" class="btn-spotify">
+  Adicionar Músicas no Spotify
+</a>
 </div>
 
 <script>
