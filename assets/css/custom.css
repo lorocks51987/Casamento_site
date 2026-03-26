@@ -13,6 +13,8 @@ body {
     letter-spacing: -0.02em;
     opacity: 1;
     transition: opacity 0.3s ease;
+    box-shadow: none !important; /* Remove any unexpected glow/shadow */
+    outline: none !important;
 }
 
 /* Custom Selection Color */
@@ -479,14 +481,14 @@ blockquote p {
 .lightbox {
     display: none;
     position: fixed;
-    z-index: 9999;
-    padding-top: 5vh;
+    z-index: 100000; /* Ensure it's above everything */
+    padding: 0;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(18, 18, 18, 0.95);
-    backdrop-filter: blur(10px);
+    background-color: rgba(10, 10, 10, 0.98); /* Deep monochromatic black */
+    backdrop-filter: blur(12px);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -502,11 +504,13 @@ blockquote p {
     margin: auto;
     display: block;
     max-width: 90%;
-    max-height: 85vh;
-    border-radius: 4px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    max-height: 75vh;
+    border-radius: 2px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
     transform: scale(0.95);
     transition: transform 0.3s ease;
+    object-fit: contain;
+    border: none; /* Remove any accidental borders */
 }
 
 .lightbox.show .lightbox-content {
@@ -536,6 +540,44 @@ blockquote p {
 @media (max-width: 900px) {
     .gallery-grid {
         column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        column-count: 1;
+    }
+
+    .lightbox {
+        padding-top: 2vh;
+    }
+
+    .lightbox-content {
+        max-height: 65vh;
+        max-width: 95%;
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 20px;
+        font-size: 35px;
+        background: rgba(0, 0, 0, 0.3);
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .lightbox-nav {
+        gap: 1.5rem;
+    }
+
+    .lightbox-nav button {
+        width: 3rem;
+        height: 3rem;
+        background: rgba(255, 255, 255, 0.05);
     }
 }
 
@@ -816,18 +858,22 @@ blockquote p {
     font-family: var(--font-family);
 }
 
-/* ============================================
-   404 PAGE — Custom Styled
-   ============================================ */
-.text-404 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 55vh;
-    text-align: center;
-    padding: 2rem;
-    animation: homeElementIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+/* Spacing refinements for Mural and Gifts */
+.mural-container,
+#presentes-title + p + hr + div {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.mural-form {
+    margin-top: 2.5rem;
+}
+
+@media (max-width: 600px) {
+    .mural-container {
+        padding-top: 1rem;
+        padding-bottom: 3rem;
+    }
 }
 
 .text-404 .error-404-code {

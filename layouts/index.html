@@ -3,7 +3,7 @@
     <div class="avatar parallax" data-speed="0.05">
         {{ if isset .Site.Params "avatarurl" }}
         <img class={{ .Site.Params.AvatarSize | default "size-m" }} src='{{ .Scratch.Get "avatarImgSrc" }}'
-            alt="{{ .Site.Params.AvatarAltText|default " avatar" }}">
+            alt="{{ .Site.Params.AvatarAltText|default " avatar" }}" loading="lazy">
         {{ end }}
     </div>
 
