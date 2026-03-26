@@ -1,10 +1,15 @@
 {{ define "main"}}
 
 <div class="text-404">
-  <h1 class="error-emoji">❤️</h1>
-  <h2>
-      404 ... Ops! Esta página não existe. <a href="{{ .Site.BaseURL }}">Voltar para o Início</a>
-  </h2>
+  <div class="error-404-code">404</div>
+  <div class="error-404-emoji">💍</div>
+  <p class="error-404-title">Página não encontrada</p>
+  <div class="error-404-divider"></div>
+  <p class="error-404-message">
+    Parece que você se perdeu a caminho da festa.<br>
+    Não se preocupe, nos encontramos no início!
+  </p>
+  <a href="{{ .Site.BaseURL }}" class="btn-rsvp">Voltar para o Início</a>
 </div>
 
 {{ end }}

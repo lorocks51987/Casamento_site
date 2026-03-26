@@ -2,42 +2,75 @@
   {{ .Inner }}
 </div>
 
-<!-- Lighbox Elements -->
-<div id="wedding-lightbox" class="lightbox">
-  <span class="lightbox-close">&times;</span>
-  <img class="lightbox-content" id="lightbox-img">
+<!-- Lightbox with Caption, Navigation & Counter -->
+<div id="wedding-lightbox" class="lightbox" role="dialog" aria-label="Visualizar foto">
+  <span class="lightbox-close" aria-label="Fechar">&times;</span>
+  <div class="lightbox-wrapper">
+    <img class="lightbox-content" id="lightbox-img" alt="">
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+    <div class="lightbox-nav">
+      <button id="lightbox-prev" aria-label="Foto anterior">&#8592;</button>
+      <span class="lightbox-counter" id="lightbox-counter"></span>
+      <button id="lightbox-next" aria-label="Próxima foto">&#8594;</button>
+    </div>
+  </div>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    var modal = document.getElementById("wedding-lightbox");
+    var modal    = document.getElementById("wedding-lightbox");
     var modalImg = document.getElementById("lightbox-img");
-    var span = document.getElementsByClassName("lightbox-close")[0];
-    
-    // Pegar todas as imagens da galeria
-    var images = document.querySelectorAll(".gallery-item img");
-    
-    images.forEach(function(img) {
-        img.addEventListener('click', function() {
-            modal.classList.add('show');
-            modalImg.src = this.src;
-            // Previne overflow na página inteira
-            document.body.style.overflow = "hidden";
-        });
-    });
-    
-    // Fechar ao clicar no X
-    span.onclick = function() {
-        modal.classList.remove('show');
+    var caption  = document.getElementById("lightbox-caption");
+    var counter  = document.getElementById("lightbox-counter");
+    var closeBtn = document.getElementsByClassName("lightbox-close")[0];
+    var prevBtn  = document.getElementById("lightbox-prev");
+    var nextBtn  = document.getElementById("lightbox-next");
+
+    var images = Array.from(document.querySelectorAll(".gallery-item img"));
+    var currentIndex = 0;
+
+    function openLightbox(index) {
+        currentIndex = index;
+        var img = images[currentIndex];
+        modal.classList.add("show");
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+        caption.textContent = img.alt && img.alt.toLowerCase() !== img.src.split("/").pop() ? img.alt : "";
+        counter.textContent = (currentIndex + 1) + " / " + images.length;
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+        modal.classList.remove("show");
         document.body.style.overflow = "auto";
     }
-    
-    // Fechar ao clicar fora da imagem
-    modal.onclick = function(e) {
-        if (e.target !== modalImg) {
-            modal.classList.remove('show');
-            document.body.style.overflow = "auto";
-        }
-    }
+
+    images.forEach(function(img, index) {
+        img.style.cursor = "zoom-in";
+        img.addEventListener("click", function() { openLightbox(index); });
+    });
+
+    prevBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        openLightbox((currentIndex - 1 + images.length) % images.length);
+    });
+
+    nextBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        openLightbox((currentIndex + 1) % images.length);
+    });
+
+    closeBtn.addEventListener("click", closeLightbox);
+
+    modal.addEventListener("click", function(e) {
+        if (e.target === modal) closeLightbox();
+    });
+
+    document.addEventListener("keydown", function(e) {
+        if (!modal.classList.contains("show")) return;
+        if (e.key === "ArrowLeft")  openLightbox((currentIndex - 1 + images.length) % images.length);
+        if (e.key === "ArrowRight") openLightbox((currentIndex + 1) % images.length);
+        if (e.key === "Escape")     closeLightbox();
+    });
 });
 </script>

@@ -70,6 +70,18 @@ title = "Luiz & Isabela"
     url = "/music/"
     weight = 7
 
+  [[menu.main]]
+    name = "Carta dos Noivos"
+    pre = "<span data-feather='mail'></span>"
+    url = "/carta/"
+    weight = 8
+
+  [[menu.main]]
+    name = "Recados"
+    pre = "<span data-feather='message-circle'></span>"
+    url = "/mural/"
+    weight = 9
+
 [markup]
   [markup.tableOfContents]
     startLevel = 1

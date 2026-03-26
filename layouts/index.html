@@ -125,4 +125,58 @@
 </div>
 
 {{ end }}
+
+<!-- ✨ Wedding Day Mode Overlay -->
+<div class="wedding-day-overlay" id="wedding-day-overlay">
+    <div class="wd-emoji">💒</div>
+    <h2 class="wd-title">Hoje é o Grande Dia!</h2>
+    <p class="wd-subtitle">Luiz &amp; Isabela — 17 de julho de 2027</p>
+    <div class="wd-divider"></div>
+    <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.8; max-width:420px; font-weight:300;">
+        Este momento finalmente chegou.<br>
+        <em>Obrigado por estar aqui com a gente.</em>
+    </p>
+    <button class="wd-dismiss" id="wd-dismiss">Ver o site →</button>
+</div>
+
+<script>
+(function() {
+    var weddingDate = new Date("2027-07-17");
+    var today       = new Date();
+    var isWeddingDay = (
+        today.getFullYear() === weddingDate.getFullYear() &&
+        today.getMonth()    === weddingDate.getMonth()    &&
+        today.getDate()     === weddingDate.getDate()
+    );
+
+    if (!isWeddingDay) return;
+
+    var overlay = document.getElementById("wedding-day-overlay");
+    var dismiss = document.getElementById("wd-dismiss");
+    overlay.classList.add("active");
+
+    // Confetti
+    var colors = ["#fff", "#f9c6d0", "#c6d4f9", "#f9f0c6", "#c6f9d5"];
+    for (var i = 0; i < 40; i++) {
+        (function() {
+            var dot = document.createElement("div");
+            dot.className = "wd-confetti";
+            dot.style.left        = Math.random() * 100 + "vw";
+            dot.style.top         = Math.random() * 100 + "vh";
+            dot.style.background  = colors[Math.floor(Math.random() * colors.length)];
+            dot.style.animationDuration  = (Math.random() * 4 + 3) + "s";
+            dot.style.animationDelay     = (Math.random() * 3) + "s";
+            dot.style.width  = (Math.random() * 8 + 4) + "px";
+            dot.style.height = dot.style.width;
+            overlay.appendChild(dot);
+        })();
+    }
+
+    dismiss.addEventListener("click", function() {
+        overlay.style.transition = "opacity 0.6s ease";
+        overlay.style.opacity = "0";
+        setTimeout(function() { overlay.classList.remove("active"); }, 600);
+    });
+})();
+</script>
 {{ end }}
