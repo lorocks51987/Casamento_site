@@ -31,22 +31,42 @@ function playClickSound() {
 // Scroll Reveal Animations
 function initScrollReveal() {
     const revealElements = document.querySelectorAll(
-        'main#content h2, main#content h3, main#content p, ' +
-        '.gallery-item, .timeline-item, .home-content blockquote'
+        'main#content h1, main#content h2, main#content h3, main#content p, ' +
+        'main#content ul, main#content ol, .gallery-item, .timeline-item, ' +
+        '.home-title, .wedding-verse, .home-date-subtitle, .save-the-date, .wedding-countdown-container, .rsvp-container'
     );
 
-    revealElements.forEach(el => el.classList.add('reveal'));
+    revealElements.forEach(el => {
+        if (!el.classList.contains('reveal')) {
+            el.classList.add('reveal');
+        }
+    });
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Anima apenas na primeira vez
+                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
     revealElements.forEach(el => observer.observe(el));
+}
+
+// Parallax Effect
+function initParallax() {
+    const parallaxElements = document.querySelectorAll('.parallax');
+    if (parallaxElements.length === 0) return;
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        parallaxElements.forEach(el => {
+            const speed = parseFloat(el.getAttribute('data-speed')) || 0.15;
+            const yPos = -(scrolled * speed);
+            el.style.transform = `translateY(${yPos}px)`;
+        });
+    }, { passive: true });
 }
 
 // Splash Screen Removal
@@ -64,6 +84,7 @@ function ready() {
     feather.replace({ 'stroke-width': 1, width: 20, height: 20 });
     setThemeByUserPref();
     initScrollReveal();
+    initParallax();
 
     // Interactive elements click sound with navigation delay
     document.querySelectorAll('.nav-link a, .nav-item a, .btn-rsvp').forEach(link => {

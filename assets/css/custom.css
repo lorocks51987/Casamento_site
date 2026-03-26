@@ -15,6 +15,40 @@ body {
     transition: opacity 0.3s ease;
 }
 
+/* Custom Selection Color */
+::selection {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+::-moz-selection {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+/* Minimalist Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
 /* Page Transitions */
 body {
     animation: fadeIn 0.3s ease-out forwards;
@@ -30,6 +64,17 @@ body {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Reveal Staggering */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Parallax Base */
+.parallax {
+    will-change: transform;
+    transition: transform 0.1s linear;
 }
 
 /* Splash Screen */
@@ -287,14 +332,33 @@ body:not(.dark) {
     font-size: 0.85rem;
     font-weight: 300;
     border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+.btn-rsvp::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--accent-color);
+    z-index: -1;
+    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
 .btn-rsvp:hover {
-    background-color: var(--wedding-border);
-    color: currentColor;
+    color: #fff !important;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Elegance shadow */
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-rsvp:hover::before {
+    width: 100%;
 }
 
 .btn-rsvp:active {
@@ -517,21 +581,34 @@ body:not(.dark) {
     font-size: 0.85rem;
     font-weight: 200;
     border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     margin-top: 1.5rem;
 }
 
-.btn-spotify:hover {
-    background-color: transparent;
-    color: #1DB954 !important; /* Verde clean do Spotify */
-    border-color: #1DB954;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.1); /* Sombra mais suave */
+.btn-spotify::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #1DB954;
+    z-index: -1;
+    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.btn-spotify:active {
-    transform: translateY(0) scale(0.98);
-    box-shadow: 0 2px 6px rgba(29, 185, 84, 0.08);
+.btn-spotify:hover {
+    color: #fff !important;
+    border-color: #1DB954;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.2);
+}
+
+.btn-spotify:hover::before {
+    width: 100%;
 }
 
 /* Disable NavBar Hover Effect on Links */
