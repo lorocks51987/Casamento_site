@@ -92,6 +92,8 @@ function ready() {
     setThemeByUserPref();
     initScrollReveal();
     initParallax();
+    initGalleryLightbox();
+    initNetlifyAjaxForms();
 
     // Interactive elements click sound with navigation delay
     document.querySelectorAll('.nav-link a, .nav-item a, .btn-rsvp').forEach(link => {
@@ -128,29 +130,36 @@ function ready() {
     // Elements to inject
     const svgsToInject = document.querySelectorAll('img.svg-inject');
     // Do the injection
-    SVGInjector(svgsToInject);
+    if (svgsToInject.length) {
+        SVGInjector(svgsToInject, {
+            afterAllInjections: () => {
+                // Normalize once after injection (avoids observing whole DOM)
+                requestAnimationFrame(normalizeInjectedSvgPaths);
+            }
+        });
+    }
 
-    const observer = new MutationObserver(() => {
-        normalizeSvgPaths();
-    });
+    function normalizeInjectedSvgPaths() {
+        document.querySelectorAll('.nav-link a svg').forEach(svg => {
+            // Some icons are feather SVGs and shouldn't be altered
+            if (svg.classList && svg.classList.contains('feather')) return;
+            // Defensive: only normalize if we can read the bbox
+            const bbox = svg.getBBox?.();
+            if (!bbox || !bbox.width || !bbox.height) return;
 
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    function normalizeSvgPaths() {
-        document.querySelectorAll('.nav-link a .svg-inject').forEach(path => {
-            const bbox = path.getBBox();
             const scaleX = 20 / bbox.width;
             const scaleY = 20 / bbox.height;
             const scale = Math.min(scaleX, scaleY);
 
-            path.setAttribute('transform', `scale(${scale}) translate(${-bbox.x}, ${-bbox.y})`);
-            path.setAttribute('stroke', 'currentColor');
-            path.setAttribute('stroke-width', '1');
-            path.setAttribute('fill', 'transparent');
+            svg.setAttribute('transform', `scale(${scale}) translate(${-bbox.x}, ${-bbox.y})`);
+            svg.setAttribute('stroke', 'currentColor');
+            svg.setAttribute('stroke-width', '1');
+            svg.setAttribute('fill', 'transparent');
         });
     }
 
-    document.getElementById('hamburger-menu-toggle').addEventListener('click', () => {
+    const hamburgerToggle = document.getElementById('hamburger-menu-toggle');
+    if (hamburgerToggle) hamburgerToggle.addEventListener('click', () => {
         const hamburgerMenu = document.getElementsByClassName('nav-hamburger-list')[0]
         const hamburgerMenuToggleTarget = document.getElementById("hamburger-menu-toggle-target")
         playClickSound();
@@ -164,14 +173,148 @@ function ready() {
     })
 }
 
-window.addEventListener('scroll', () => {
-    if (window.innerWidth <= 820) {
-        // For smaller screen, show shadow earlier
-        toggleHeaderShadow(50);
-    } else {
-        toggleHeaderShadow(100);
+function initGalleryLightbox() {
+    const modal = document.getElementById("wedding-lightbox");
+    if (!modal) return;
+
+    // Ensure the fixed modal isn't trapped in transformed ancestors (mobile Safari)
+    if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
     }
-});
+
+    const modalImg = document.getElementById("lightbox-img");
+    const caption = document.getElementById("lightbox-caption");
+    const counter = document.getElementById("lightbox-counter");
+    const closeBtn = modal.querySelector(".lightbox-close");
+    const prevBtn = document.getElementById("lightbox-prev");
+    const nextBtn = document.getElementById("lightbox-next");
+
+    const images = Array.from(document.querySelectorAll(".gallery-item img"));
+    if (!images.length) return;
+
+    let currentIndex = 0;
+    const scrollYBeforeOpen = { value: 0 };
+
+    function setBodyLocked(locked) {
+        if (locked) {
+            // More reliable than overflow hidden on mobile
+            scrollYBeforeOpen.value = window.scrollY || 0;
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${scrollYBeforeOpen.value}px`;
+            document.body.style.left = "0";
+            document.body.style.right = "0";
+            document.body.style.width = "100%";
+        } else {
+            const y = scrollYBeforeOpen.value || 0;
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.left = "";
+            document.body.style.right = "";
+            document.body.style.width = "";
+            window.scrollTo(0, y);
+        }
+    }
+
+    function openLightbox(index) {
+        currentIndex = index;
+        const img = images[currentIndex];
+        modal.classList.add("show");
+        modalImg.src = img.currentSrc || img.src;
+        modalImg.alt = img.alt || "";
+        const fileName = (modalImg.src || "").split("/").pop();
+        caption.textContent = modalImg.alt && modalImg.alt.toLowerCase() !== (fileName || "").toLowerCase() ? modalImg.alt : "";
+        counter.textContent = `${currentIndex + 1} / ${images.length}`;
+        setBodyLocked(true);
+    }
+
+    function closeLightbox() {
+        modal.classList.remove("show");
+        setBodyLocked(false);
+    }
+
+    function prev() {
+        openLightbox((currentIndex - 1 + images.length) % images.length);
+    }
+    function next() {
+        openLightbox((currentIndex + 1) % images.length);
+    }
+
+    images.forEach((img, index) => {
+        img.style.cursor = "zoom-in";
+        img.addEventListener("click", () => openLightbox(index));
+        // Touch reliability on some mobiles
+        img.addEventListener("touchend", (e) => {
+            e.preventDefault();
+            openLightbox(index);
+        }, { passive: false });
+    });
+
+    if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); prev(); });
+    if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); next(); });
+    if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeLightbox();
+    });
+    modal.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+
+    document.addEventListener("keydown", (e) => {
+        if (!modal.classList.contains("show")) return;
+        if (e.key === "ArrowLeft") prev();
+        if (e.key === "ArrowRight") next();
+        if (e.key === "Escape") closeLightbox();
+    });
+}
+
+function initNetlifyAjaxForms() {
+    // Unifies RSVP + Mural behavior (prevents duplicated inline scripts)
+    document.querySelectorAll('form[data-netlify="true"]').forEach((form) => {
+        const id = form.getAttribute("id") || "";
+        const successId = id ? id.replace("-form", "-success") : "";
+        const success = successId ? document.getElementById(successId) : null;
+        const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+        const originalBtnText = submitBtn && submitBtn.tagName === "BUTTON" ? submitBtn.textContent : null;
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                if (originalBtnText) submitBtn.textContent = "Enviando...";
+            }
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(data).toString()
+            })
+                .then(() => {
+                    form.style.display = "none";
+                    if (success) success.style.display = "block";
+                })
+                .catch(() => {
+                    alert("Ops! Erro ao enviar. Por favor, tente novamente.");
+                })
+                .finally(() => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        if (originalBtnText) submitBtn.textContent = originalBtnText;
+                    }
+                });
+        });
+    });
+}
+
+// Consolidated scroll work (throttled via rAF)
+let scrollTicking = false;
+window.addEventListener('scroll', () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+        const threshold = window.innerWidth <= 820 ? 50 : 100;
+        toggleHeaderShadow(threshold);
+        scrollTicking = false;
+    });
+}, { passive: true });
 
 function fixTocItemsIndent() {
     document.querySelectorAll('#TableOfContents a').forEach($tocItem => {
@@ -182,17 +325,26 @@ function fixTocItemsIndent() {
 
 function createScrollSpy() {
     var elements = document.querySelectorAll('#toc a');
+    let rafPending = false;
     document.addEventListener('scroll', function () {
-        elements.forEach(function (element) {
-            const boundingRect = document.getElementById(element.getAttribute('href').substring(1)).getBoundingClientRect();
-            if (boundingRect.top <= 55 && boundingRect.bottom >= 0) {
-                elements.forEach(function (elem) {
-                    elem.classList.remove('active');
-                });
-                element.classList.add('active');
-            }
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(() => {
+            elements.forEach(function (element) {
+                const targetId = element.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (!target) return;
+                const boundingRect = target.getBoundingClientRect();
+                if (boundingRect.top <= 55 && boundingRect.bottom >= 0) {
+                    elements.forEach(function (elem) {
+                        elem.classList.remove('active');
+                    });
+                    element.classList.add('active');
+                }
+            });
+            rafPending = false;
         });
-    });
+    }, { passive: true });
 }
 
 function toggleHeaderShadow(scrollY) {
@@ -228,6 +380,9 @@ function toggleTheme(event) {
 
 function setTheme(themeToSet, targets) {
     darkThemeCss.disabled = themeToSet === 'light';
+    // Expose theme state to CSS (tokens + overrides)
+    document.documentElement.classList.toggle('dark', themeToSet === 'dark');
+    document.documentElement.setAttribute('data-theme', themeToSet);
     targets.forEach((target) => {
         target.querySelector('a').innerHTML = feather.icons[THEME_TO_ICON_CLASS[themeToSet].split('-')[1]].toSvg();
         target.querySelector(".dark-theme-toggle-screen-reader-target").textContent = [THEME_TO_ICON_TEXT_CLASS[themeToSet]];

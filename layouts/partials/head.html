@@ -20,6 +20,7 @@
     {{ $siteKeywords := .Site.Params.MetaKeywords | default (slice) }}
     {{ $postKeywords := .Params.tags | default (slice) }}
     {{ $keywords := union $siteKeywords $postKeywords }}
+    {{ $base := urls.Parse .Site.BaseURL }}
 
     <!-- SEO titles & descriptions -->
     <title>{{ $title }}</title>
@@ -27,7 +28,7 @@
     <meta name="keywords" content='{{ delimit $keywords ", "}}'>
 
     <meta property="og:url" content="{{ .Permalink }}">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="{{ if or (eq .Kind "page") (eq .Kind "section") }}article{{ else }}website{{ end }}">
     <meta property="og:title" content="{{ $title }}">
     <meta property="og:description" content="{{ $description }}">
     <meta property="og:image" content="{{ absURL $image }}">
@@ -36,7 +37,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $title }}">
     <meta name="twitter:description" content="{{ $description }}">
-    <meta property="twitter:domain" content="{{ .Permalink }}">
+    {{ if $base.Host }}<meta property="twitter:domain" content="{{ $base.Host }}">{{ end }}
     <meta property="twitter:url" content="{{ .Permalink }}">
     <meta name="twitter:image" content="{{ absURL $image }}">
 
@@ -44,7 +45,11 @@
     <link rel="canonical" href="{{ .Permalink }}">
 
     {{ $cssNormalize := resources.Get "css/normalize.min.css" }}
-    <link rel="stylesheet" type="text/css" href="{{ $cssNormalize.RelPermalink }}" media="print">
+    <link rel="stylesheet" type="text/css" href="{{ $cssNormalize.RelPermalink }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" type="text/css" href="{{ $cssNormalize.RelPermalink }}"></noscript>
+
+    {{ $cssTokens := resources.Get "css/tokens.css" | minify }}
+    <link rel="stylesheet" type="text/css" href="{{ $cssTokens.RelPermalink }}">
 
     {{ $cssMain := resources.Get "css/main.css" | minify }}
     <link rel="stylesheet" type="text/css" href="{{ $cssMain.RelPermalink }}">

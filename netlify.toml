@@ -1,5 +1,5 @@
 [build]
-  command = "hugo -s exampleSite --themesDir .. -t . --gc --minify"
+  command = "hugo -s exampleSite --themesDir .. -t . --gc --minify --baseURL $DEPLOY_PRIME_URL"
   publish = "exampleSite/public"
 
 [build.environment]

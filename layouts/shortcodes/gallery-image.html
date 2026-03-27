@@ -1,3 +1,26 @@
 <div class="gallery-item">
-  <img src="{{ .Get "src" }}" alt="{{ .Get "alt" }}" loading="lazy">
+  {{- $src := .Get "src" -}}
+  {{- $alt := .Get "alt" -}}
+  {{- $assetPath := "" -}}
+  {{- if hasPrefix $src "/images/" -}}
+    {{- $assetPath = printf "images/%s" (path.Base $src) -}}
+  {{- end -}}
+  {{- $img := cond (ne $assetPath "") (resources.GetMatch $assetPath) nil -}}
+
+  {{- if $img -}}
+    {{- $w480 := $img.Resize "480x" -}}
+    {{- $w800 := $img.Resize "800x" -}}
+    {{- $w1200 := $img.Resize "1200x" -}}
+    {{- $w1600 := $img.Resize "1600x" -}}
+    <img
+      src="{{ $w800.RelPermalink }}"
+      srcset="{{ $w480.RelPermalink }} 480w, {{ $w800.RelPermalink }} 800w, {{ $w1200.RelPermalink }} 1200w, {{ $w1600.RelPermalink }} 1600w"
+      sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+      alt="{{ $alt }}"
+      loading="lazy"
+      decoding="async"
+    >
+  {{- else -}}
+    <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+  {{- end -}}
 </div>

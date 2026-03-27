@@ -3,6 +3,24 @@
   --dark-secondary-color: #2d333b;
   --dark-tertiary-color: #646464;
   --dark-text-color: white;
+
+  /* Keep tokens consistent with dark theme (site uses dark.css toggling) */
+  --surface-1: #1a1a1a;
+  --surface-2: #121212;
+  --border-1: rgba(255, 255, 255, 0.1);
+
+  --text-1: rgba(255, 255, 255, 0.88);
+  --text-2: rgba(255, 255, 255, 0.64);
+  --text-3: rgba(255, 255, 255, 0.46);
+
+  --focus-ring: 0 0 0 3px rgba(255, 255, 255, 0.16);
+  --control-border: rgba(255, 255, 255, 0.35);
+  --control-bg: transparent;
+  --control-text: var(--text-1);
+  --control-placeholder: rgba(255, 255, 255, 0.55);
+
+  --timeline-dot-fill: rgba(255, 255, 255, 0.92);
+  --timeline-dot-stroke: rgba(255, 255, 255, 0.32);
 }
 
 html {

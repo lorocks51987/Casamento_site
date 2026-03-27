@@ -1,9 +1,8 @@
 /* Custom Overrides for Wedding MVP - Monospace & High-End Clean */
 
 :root {
-    --font-family: "Courier New", Courier, monospace;
-    --wedding-border: rgba(0, 0, 0, 0.1);
-    --wedding-bg: #f9f9f9;
+    --wedding-border: var(--border-1);
+    --wedding-bg: var(--surface-1);
     --timeline-dot-border: #ffffff;
 }
 
@@ -14,7 +13,13 @@ body {
     opacity: 1;
     transition: opacity 0.3s ease;
     box-shadow: none !important; /* Remove any unexpected glow/shadow */
-    outline: none !important;
+}
+
+/* Keyboard focus (keeps the premium feel but restores usability) */
+:where(a, button, [role="button"], [role="switch"], input, textarea, select):focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: 2px;
 }
 
 /* Custom Selection Color */
@@ -149,6 +154,7 @@ body.loaded #splash-screen {
 /* Slide-up for main content only */
 main#content {
     animation: slideUp 0.5s ease-out forwards;
+    transform: none;
 }
 
 @keyframes slideUp {
@@ -158,9 +164,38 @@ main#content {
     }
 
     to {
-        transform: translateY(0);
+        transform: none;
         opacity: 1;
     }
+}
+
+/* Reading rhythm: keep premium look, improve legibility */
+.post .post-content {
+    color: var(--text-1);
+}
+.post .post-content p,
+.post .post-content li {
+    color: var(--text-1);
+}
+.post .post-content p,
+.post .post-content ul,
+.post .post-content ol,
+.post .post-content hr {
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+.post .post-content p,
+.post .post-content ul,
+.post .post-content ol {
+    line-height: 1.85;
+}
+
+/* Keep page title alignment consistent with reading width */
+.post .post-header-section h1 {
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1,
@@ -183,14 +218,14 @@ h6 {
     /* Nearly black */
     --dark-secondary-color: #1e1e1e;
     --dark-text-color: #e0e0e0;
-    --wedding-border: rgba(255, 255, 255, 0.1);
-    --wedding-bg: #1a1a1a;
+    --wedding-border: var(--border-1);
+    --wedding-bg: var(--surface-1);
     --timeline-dot-border: #121212;
 }
 
 /* Light Mode Overrides */
 [data-theme="light"],
-body:not(.dark) {
+html:not(.dark) {
     --accent-color: #1a1a1a !important;
 }
 
@@ -249,8 +284,8 @@ body:not(.dark) {
 .next-post-date,
 .list-posts .post-date,
 blockquote {
-    color: inherit !important;
-    opacity: 0.55;
+    color: var(--text-2) !important;
+    opacity: 1;
 }
 
 blockquote {
@@ -259,7 +294,8 @@ blockquote {
 }
 
 blockquote p {
-    opacity: 0.65;
+    color: var(--text-2);
+    opacity: 1;
 }
 
 /* Clean UI adjustments */
@@ -400,47 +436,6 @@ blockquote p {
     margin-bottom: 2rem;
 }
 
-.btn-rsvp {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background-color: transparent;
-    color: currentColor;
-    border: 1px solid currentColor;
-    text-decoration: none !important;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 0.85rem;
-    font-weight: 300;
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.btn-rsvp::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: var(--accent-color);
-    z-index: -1;
-    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.btn-rsvp:hover {
-    color: #fff !important;
-    transform: translateY(-2px);
-    border-color: var(--accent-color);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.btn-rsvp:hover::before {
-    width: 100%;
-}
-
 .btn-rsvp:active {
     transform: translateY(0) scale(0.98);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -545,44 +540,6 @@ blockquote p {
 
 @media (max-width: 600px) {
     .gallery-grid {
-        column-count: 1;
-    }
-
-    .lightbox {
-        padding-top: 2vh;
-    }
-
-    .lightbox-content {
-        max-height: 65vh;
-        max-width: 95%;
-    }
-
-    .lightbox-close {
-        top: 15px;
-        right: 20px;
-        font-size: 35px;
-        background: rgba(0, 0, 0, 0.3);
-        width: 45px;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-    }
-
-    .lightbox-nav {
-        gap: 1.5rem;
-    }
-
-    .lightbox-nav button {
-        width: 3rem;
-        height: 3rem;
-        background: rgba(255, 255, 255, 0.05);
-    }
-}
-
-@media (max-width: 600px) {
-    .gallery-grid {
         column-count: 2;
         gap: 0.8rem;
     }
@@ -631,17 +588,18 @@ blockquote p {
     top: 0.5rem;
     width: 13px;
     height: 13px;
-    background: var(--wedding-bg);
+    background: var(--timeline-dot-fill);
     border-radius: 50%;
-    border: 2px solid var(--wedding-border);
+    border: 2px solid var(--timeline-dot-stroke);
     z-index: 10;
-    transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.4s ease;
+    transition: border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
 
 .timeline-item:hover .timeline-dot {
     border-color: var(--accent-color);
-    background: var(--accent-color);
-    transform: scale(1.1);
+    background: var(--timeline-dot-fill);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 35%, transparent);
+    transform: scale(1.08);
 }
 
 .timeline-content {
@@ -656,11 +614,32 @@ blockquote p {
     margin-bottom: 0.6rem;
     font-weight: 600;
     opacity: 0.9;
-    transition: color 0.4s ease, opacity 0.4s ease;
+    display: inline-block;
+    position: relative;
+    transition: opacity 0.35s ease, text-shadow 0.35s ease;
+}
+
+.timeline-date::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.35rem;
+    height: 1px;
+    background: color-mix(in srgb, var(--accent-color) 55%, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    opacity: 0;
 }
 
 .timeline-item:hover .timeline-date {
-    color: var(--accent-color);
+    opacity: 1;
+    text-shadow: 0 0 12px color-mix(in srgb, var(--accent-color) 18%, transparent);
+}
+
+.timeline-item:hover .timeline-date::after {
+    transform: scaleX(1);
     opacity: 1;
 }
 
@@ -687,49 +666,6 @@ blockquote p {
 }
 
 
-
-/* Spotify Collaborative Button */
-.btn-spotify {
-    display: inline-block;
-    padding: 0.5rem 1.2rem;
-    background-color: transparent;
-    color: currentColor;
-    border: 1px solid currentColor;
-    text-decoration: none !important;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 0.85rem;
-    font-weight: 200;
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    margin-top: 1.5rem;
-}
-
-.btn-spotify::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: #1DB954;
-    z-index: -1;
-    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.btn-spotify:hover {
-    color: #fff !important;
-    border-color: #1DB954;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.2);
-}
-
-.btn-spotify:hover::before {
-    width: 100%;
-}
 
 /* Disable NavBar Hover Effect on Links */
 .nav-link a:hover,
@@ -953,20 +889,20 @@ blockquote p {
 
 .mural-form input,
 .mural-form textarea,
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-textarea,
-select {
+.mural-form input[type="text"],
+.mural-form input[type="email"],
+.mural-form input[type="tel"],
+.mural-form input[type="number"],
+.mural-form textarea,
+.mural-form select {
     width: 100%;
-    background: transparent;
-    border: 2px solid #ffffff !important;
+    background: var(--control-bg);
+    border: 2px solid var(--control-border) !important;
     border-radius: 2px;
     padding: 0.75rem 1rem;
     font-family: var(--font-family);
     font-size: 0.95rem;
-    color: #ffffff !important;
+    color: var(--control-text) !important;
     transition: all 0.3s ease;
     box-sizing: border-box;
     resize: none !important;
@@ -974,22 +910,20 @@ select {
 }
 
 /* Force placeholder color */
-input::placeholder,
-textarea::placeholder {
-    color: rgba(255, 255, 255, 0.6) !important;
+.mural-form input::placeholder,
+.mural-form textarea::placeholder {
+    color: var(--control-placeholder) !important;
     opacity: 1;
 }
 
 .mural-form input:focus,
 .mural-form textarea:focus,
-input:focus,
-textarea:focus,
-select:focus {
+.mural-form select:focus {
     border-color: var(--accent-color) !important;
 }
 
 .mural-form textarea,
-textarea {
+.mural-form textarea {
     min-height: 130px;
 }
 
@@ -1009,7 +943,8 @@ textarea {
     border-radius: 2px;
     position: relative;
     overflow: hidden;
-    z-index: 1;
+    isolation: isolate;
+    z-index: 0;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     font-family: var(--font-family);
@@ -1026,6 +961,7 @@ textarea {
     height: 100%;
     background: var(--accent-color);
     z-index: -1;
+    pointer-events: none;
     transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 

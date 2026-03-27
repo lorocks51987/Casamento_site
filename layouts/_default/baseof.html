@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ .Site.Language.Lang | default "pt-br" }}">
     {{- $avatarImgSrc := .Site.Params.AvatarURL -}}
     {{- if and (isset .Site.Params "avatarURL") (not (hasPrefix $avatarImgSrc "http")) -}}
         {{- $avatarImgSrc = (urls.JoinPath $.Site.BaseURL ($.Site.Params.AvatarURL | default "")) -}}

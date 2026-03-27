@@ -118,29 +118,3 @@ Para nos ajudar na organização, por favor confirme sua presença até o dia **
     <em style="opacity:0.6; font-size:0.9rem;">Mal podemos esperar para te ver lá. Obrigado! ❤️</em>
   </p>
 </div>
-
-<script>
-(function() {
-  var form    = document.getElementById("rsvp-form");
-  var success = document.getElementById("rsvp-success");
-  if (!form) return;
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    var data = new FormData(form);
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(data).toString()
-    })
-    .then(function() {
-      form.style.display = "none";
-      success.style.display = "block";
-    })
-    .catch(function() {
-      alert("Ops! Erro ao enviar. Por favor, tente novamente.");
-    });
-  });
-})();
-</script>
-

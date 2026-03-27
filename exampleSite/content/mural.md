@@ -68,28 +68,3 @@ A música sempre foi fundamental na nossa jornada. Enquanto aguardamos o grande 
   Adicionar Músicas no Spotify
 </a>
 </div>
-
-<script>
-(function() {
-  var form    = document.getElementById("mural-form");
-  var success = document.getElementById("mural-success");
-  if (!form) return;
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    var data = new FormData(form);
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(data).toString()
-    })
-    .then(function() {
-      form.style.display = "none";
-      success.style.display = "block";
-    })
-    .catch(function() {
-      alert("Ops! Erro ao enviar. Tente novamente.");
-    });
-  });
-})();
-</script>

@@ -1,0 +1,45 @@
+:root {
+  /* Typography */
+  --font-family: "Courier New", Courier, monospace;
+
+  /* Surface + borders */
+  --surface-1: #f9f9f9;
+  --surface-2: #ffffff;
+  --border-1: rgba(0, 0, 0, 0.1);
+
+  /* Text (light) */
+  --text-1: rgba(0, 0, 0, 0.92);
+  --text-2: rgba(0, 0, 0, 0.68);
+  --text-3: rgba(0, 0, 0, 0.52);
+
+  /* Controls */
+  --focus-ring: 0 0 0 3px rgba(0, 0, 0, 0.18);
+  --control-border: rgba(0, 0, 0, 0.25);
+  --control-bg: transparent;
+  --control-text: var(--text-1);
+  --control-placeholder: rgba(0, 0, 0, 0.45);
+
+  /* Components */
+  --timeline-dot-fill: rgba(0, 0, 0, 0.88);
+  --timeline-dot-stroke: rgba(0, 0, 0, 0.28);
+}
+
+[data-theme="dark"],
+.dark {
+  --surface-1: #1a1a1a;
+  --surface-2: #121212;
+  --border-1: rgba(255, 255, 255, 0.1);
+
+  --text-1: rgba(255, 255, 255, 0.88);
+  --text-2: rgba(255, 255, 255, 0.64);
+  --text-3: rgba(255, 255, 255, 0.46);
+
+  --focus-ring: 0 0 0 3px rgba(255, 255, 255, 0.16);
+  --control-border: rgba(255, 255, 255, 0.35);
+  --control-bg: transparent;
+  --control-text: var(--text-1);
+  --control-placeholder: rgba(255, 255, 255, 0.55);
+
+  --timeline-dot-fill: rgba(255, 255, 255, 0.92);
+  --timeline-dot-stroke: rgba(255, 255, 255, 0.32);
+}
